@@ -3,9 +3,7 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import {
   GET_POSTS,
-  PROFILE_ERROR,
   POST_ERROR,
-  UPDATE_PROFILE,
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
@@ -18,7 +16,7 @@ import {
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/posts');
-
+    // console.log(res);
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -156,7 +154,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 // Delete comment
 export const deleteComment = (postId, commentId) => async (dispatch) => {
   try {
-    const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
+    await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
 
     dispatch({
       type: DELETE_COMMENT,
